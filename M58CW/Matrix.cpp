@@ -24,27 +24,30 @@ Matrix<int> result,result2,result3;
 	test.print();
 	cout<<"test 2 array"<<endl;
 	test2.print();
-	cout<<"test 3 array"<<endl;
-	test3.print();
+	/*cout<<"test 3 array"<<endl;
+	test3.print();*/
 	
 	
-	cout<<"result test+test2"<<endl;
+	/*cout<<"result test+test2"<<endl;
 	result = test+test2;
-	result.print();
+	result.print();*/
 	/*cout<<"result test+=test2"<<endl;
 	test+=test2;
 	test.print();*/
-	cout<<"result test-test2"<<endl;
+	/*cout<<"result test-test2"<<endl;
 	result = test-test2;
-	result.print();
+	result.print();*/
 	//result.arrayReset();
 	/*cout<<"result test-=test2"<<endl;
 	test-=test2;
 	test.print();*/
-	cout<<"result test*=test2"<<endl;
-	result = test * test2;
+	/*cout<<"result test*5"<<endl;
+	result = test * 5;
 	result.print();
-	if(test==test2)
+	cout<<"result test*test2"<<endl;
+	result = test * test2;
+	result.print();*/
+	/*if(test==test2)
 	{
 		cout<<"result test==test2"<<endl;
 	}
@@ -52,7 +55,11 @@ Matrix<int> result,result2,result3;
 	if(test!=test2)
 	{
 		cout<<"result test!=test2"<<endl;
-	}
+	}*/
+
+	cout<<"result test  transpose test2"<<endl;
+	result = test.transpose();
+	
 
 	getchar();
 	return 0;

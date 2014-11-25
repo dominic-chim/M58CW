@@ -114,13 +114,26 @@ public:
 	void operator*=(Matrix<T> tMatrix);
 	bool operator==(Matrix<T> tMatrix);
 	bool operator!=(Matrix<T> tMatrix);
+	Matrix<T> transpose();
+	void inverse();
+	void setToIdentity();
+
 
 private:
 	int row,col;
 	T **data;
-	
-	
 };
+
+
+
+
+
+
+
+
+
+
+
 
 
 template <typename T> Matrix<T>::Matrix()
@@ -128,8 +141,6 @@ template <typename T> Matrix<T>::Matrix()
 		data = new T*[0];
 	}
 
-
-	
 template <typename T> Matrix<T>::Matrix<T>(int rows,int cols)
 {
 	if(checkbounds(rows,cols)==true)
@@ -170,7 +181,7 @@ template<typename T>Matrix<T> Matrix<T>::operator+(Matrix<T> tMatrix)
 	if(checkarry(tMatrix.row,tMatrix.col))
 	{
 		printf("in bounds");
-	}
+	
 		Matrix<T> resultMatrix(row,col);
 		for(int x=0;x<row;x++)
 			{
@@ -180,6 +191,8 @@ template<typename T>Matrix<T> Matrix<T>::operator+(Matrix<T> tMatrix)
 				}
 			}
 		return resultMatrix;
+	}
+	return 0;
 }
 
 template<typename T> void Matrix<T>::operator+=(Matrix<T> tMatrix)
@@ -187,7 +200,7 @@ template<typename T> void Matrix<T>::operator+=(Matrix<T> tMatrix)
 	if(checkarry(tMatrix.row,tMatrix.col))
 	{
 		printf("in bounds");
-	}
+	
 
 	for(int x=0;x<row;x++)
 		{
@@ -196,6 +209,7 @@ template<typename T> void Matrix<T>::operator+=(Matrix<T> tMatrix)
 				data[x][y] +=tMatrix.getDataElem(x,y);
 			}
 		}
+	}
 }
 
 template<typename T>Matrix<T> Matrix<T>::operator-(Matrix<T> tMatrix)
@@ -203,7 +217,7 @@ template<typename T>Matrix<T> Matrix<T>::operator-(Matrix<T> tMatrix)
 	if(checkarry(tMatrix.row,tMatrix.col))
 	{
 		printf("in bounds");
-	}
+	
 
 	Matrix<T> resultMatrix(row,col);
 	for(int x=0;x<row;x++)
@@ -214,6 +228,8 @@ template<typename T>Matrix<T> Matrix<T>::operator-(Matrix<T> tMatrix)
 				}
 		}
 	return resultMatrix;
+	}
+	return 0;
 }
 
 template<typename T> void Matrix<T>::operator-=(Matrix<T> tMatrix)
@@ -221,7 +237,7 @@ template<typename T> void Matrix<T>::operator-=(Matrix<T> tMatrix)
 	if(checkarry(tMatrix.row,tMatrix.col))
 	{
 		printf("in bounds");
-	}
+	
 	
 	for(int x=0;x<row;x++)
 		{
@@ -230,15 +246,12 @@ template<typename T> void Matrix<T>::operator-=(Matrix<T> tMatrix)
 				data[x][y] -=tMatrix.getDataElem(x,y);
 			}
 		}
+	}
 }
 
 template<typename T>Matrix<T> Matrix<T>::operator*(const T val)
 {
-	if(checkarry(tMatrix.row,tMatrix.col))
-	{
-		printf("in bounds");
-	}
-	
+
 	Matrix<T> resultMatrix(row,col);
 	for(int x=0;x<row;x++)
 		{
@@ -255,7 +268,7 @@ template<typename T>Matrix<T> Matrix<T>::operator*(Matrix<T> tMatrix)
 	if(checkarry(tMatrix.row,tMatrix.col))
 	{
 		printf("in bounds");
-	}
+	
 
 	Matrix<T> resultMatrix(row,col);
 	for(int x=0;x<row;x++)
@@ -266,6 +279,8 @@ template<typename T>Matrix<T> Matrix<T>::operator*(Matrix<T> tMatrix)
 				}
 		}
 	return resultMatrix;
+	}
+	return 0;
 }
 
 template<typename T> void Matrix<T>::operator*=(Matrix<T> tMatrix)
@@ -273,7 +288,6 @@ template<typename T> void Matrix<T>::operator*=(Matrix<T> tMatrix)
 	if(checkarry(tMatrix.row,tMatrix.col))
 	{
 		printf("in bounds");
-	}
 	
 	for(int x=0;x<row;x++)
 		{
@@ -282,6 +296,7 @@ template<typename T> void Matrix<T>::operator*=(Matrix<T> tMatrix)
 				data[x][y] *=tMatrix.getDataElem(x,y);
 			}
 		}
+	}
 }
 
 template<typename T>bool Matrix<T>::operator==(Matrix<T> tMatrix)
@@ -295,7 +310,6 @@ template<typename T>bool Matrix<T>::operator==(Matrix<T> tMatrix)
 	{
 		for (int j = 0; j < col; j++)
 		{
-			cout<< data[i][j] <<" "<<tMatrix.data[i][j]<<endl;
 			if(data[i][j]!=tMatrix.data[i][j])
 			{
 				return false;
@@ -317,11 +331,37 @@ template<typename T>bool Matrix<T>::operator!=(Matrix<T> tMatrix)
 	{
 		for (int j = 0; j < col; j++)
 		{
-			cout<< data[i][j] <<" "<<tMatrix.data[i][j]<<endl;
 			if(data[i][j]!=tMatrix.data[i][j])
 				return true;
 		}
 	}
 
 	return false;
+}
+
+template<typename T>Matrix<T> Matrix<T>::transpose()
+{
+	Matrix<T> resultMatrix(row,col);
+	for ( int i = 0; i < row; i++ )
+	 {
+       for ( int j = 0; j < col; j++ )
+       {
+		
+		   resultMatrix.data[j][i] = data[i][j];
+		   //cout<< resultMatrix.data[j][i]<<"  "<<data[i][j]<<endl;
+       }
+	}
+
+	for (int i = 0; i<col; i++)
+	{
+	   for (int j = 0; j<row; j++)
+	   {
+			
+		  // cout<<i<<" "<<j<<" "<<data[i][j];
+		  cout << resultMatrix.data[i][j] << "\t";
+		
+	   }
+	   cout<<endl;
+	}
+	return resultMatrix;
 }
